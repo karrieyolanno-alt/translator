@@ -13,84 +13,101 @@
     body {
       font-family: 'Sarabun', sans-serif;
     }
+    /* ซ่อน Scrollbar สำหรับตัวเลือกโทนภาษา */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
   <!-- Header -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="bg-indigo-600 p-2.5 rounded-xl text-white shadow-md shadow-indigo-100 flex items-center justify-center">
-          <i class="fa-solid fa-wand-magic-sparkles text-lg animate-pulse"></i>
+    <div class="max-w-6xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2.5 sm:space-x-3">
+        <div class="bg-indigo-600 p-2 sm:p-2.5 rounded-xl text-white shadow-md shadow-indigo-100 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-wand-magic-sparkles text-base sm:text-lg animate-pulse"></i>
         </div>
-        <div>
-          <h1 class="font-bold text-xl text-slate-900 tracking-tight flex items-center gap-2">
-            Gemini Translator <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full font-semibold">Pro</span>
+        <div class="min-w-0">
+          <h1 class="font-bold text-lg sm:text-xl text-slate-900 tracking-tight flex items-center gap-1.5 sm:gap-2 truncate">
+            Gemini Translator <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-semibold shrink-0">Pro</span>
           </h1>
-          <p class="text-xs text-slate-500">ระบบแปลภาษาและวิเคราะห์บริบทด้วย AI พร้อมเสียง Google Translate</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 truncate">ระบบแปลภาษาและวิเคราะห์บริบทด้วย AI</p>
         </div>
       </div>
-      <div class="flex items-center space-x-2">
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-ping"></span>
-          Ready & Active
+      <div class="flex items-center shrink-0">
+        <span class="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium bg-emerald-100 text-emerald-800">
+          <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 mr-1.5 animate-ping"></span>
+          Ready
         </span>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 space-y-6">
+  <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 overflow-x-hidden">
 
     <!-- Controls Box -->
-    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="bg-white p-3 sm:p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3 sm:space-y-4 max-w-full">
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 min-w-0">
         
-        <!-- Language Selectors -->
-        <div class="flex items-center justify-between w-full md:w-auto gap-2 flex-1">
-          <select id="sourceLang" class="bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-indigo-500 p-2.5 flex-1 font-medium outline-none cursor-pointer">
-            <option value="auto">ตรวจจับภาษาอัตโนมัติ (Auto Detect)</option>
-            <option value="th">ไทย (Thai)</option>
-            <option value="en">อังกฤษ (English)</option>
-            <option value="zh">จีน (Chinese)</option>
-            <option value="ja">ญี่ปุ่น (Japanese)</option>
-            <option value="ko">เกาหลี (Korean)</option>
-            <option value="es">สเปน (Spanish)</option>
-            <option value="fr">ฝรั่งเศส (French)</option>
-            <option value="de">เยอรมัน (German)</option>
-            <option value="ru">รัสเซีย (Russian)</option>
-            <option value="vi">เวียดนาม (Vietnamese)</option>
-            <option value="id">อินโดนีเซีย (Indonesian)</option>
-          </select>
+        <!-- Language Selectors (Responsive & Prevent Overflow) -->
+        <div class="flex items-center justify-between w-full lg:w-auto gap-1.5 sm:gap-2 flex-1 min-w-0">
+          
+          <!-- Source Language -->
+          <div class="flex-1 min-w-0">
+            <select id="sourceLang" class="w-full bg-slate-50 border border-slate-300 text-slate-800 text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-indigo-500 p-2 sm:p-2.5 font-medium outline-none cursor-pointer truncate">
+              <option value="auto">ตรวจจับภาษาอัตโนมัติ</option>
+              <option value="th">ไทย (Thai)</option>
+              <option value="en">อังกฤษ (English)</option>
+              <option value="zh">จีน (Chinese)</option>
+              <option value="ja">ญี่ปุ่น (Japanese)</option>
+              <option value="ko">เกาหลี (Korean)</option>
+              <option value="es">สเปน (Spanish)</option>
+              <option value="fr">ฝรั่งเศส (French)</option>
+              <option value="de">เยอรมัน (German)</option>
+              <option value="ru">รัสเซีย (Russian)</option>
+              <option value="vi">เวียดนาม (Vietnamese)</option>
+              <option value="id">อินโดนีเซีย (Indonesian)</option>
+            </select>
+          </div>
 
-          <button id="swapBtn" title="สลับภาษา" class="p-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors">
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <!-- Swap Button -->
+          <button id="swapBtn" title="สลับภาษา" class="shrink-0 p-2 sm:p-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors">
+            <i class="fa-solid fa-arrow-right-arrow-left text-xs sm:text-sm"></i>
           </button>
 
-          <select id="targetLang" class="bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-indigo-500 p-2.5 flex-1 font-medium outline-none cursor-pointer">
-            <option value="en" selected>อังกฤษ (English)</option>
-            <option value="th">ไทย (Thai)</option>
-            <option value="zh">จีน (Chinese)</option>
-            <option value="ja">ญี่ปุ่น (Japanese)</option>
-            <option value="ko">เกาหลี (Korean)</option>
-            <option value="es">สเปน (Spanish)</option>
-            <option value="fr">ฝรั่งเศส (French)</option>
-            <option value="de">เยอรมัน (German)</option>
-            <option value="ru">รัสเซีย (Russian)</option>
-            <option value="vi">เวียดนาม (Vietnamese)</option>
-            <option value="id">อินโดนีเซีย (Indonesian)</option>
-          </select>
+          <!-- Target Language -->
+          <div class="flex-1 min-w-0">
+            <select id="targetLang" class="w-full bg-slate-50 border border-slate-300 text-slate-800 text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-indigo-500 p-2 sm:p-2.5 font-medium outline-none cursor-pointer truncate">
+              <option value="en" selected>อังกฤษ (English)</option>
+              <option value="th">ไทย (Thai)</option>
+              <option value="zh">จีน (Chinese)</option>
+              <option value="ja">ญี่ปุ่น (Japanese)</option>
+              <option value="ko">เกาหลี (Korean)</option>
+              <option value="es">สเปน (Spanish)</option>
+              <option value="fr">ฝรั่งเศส (French)</option>
+              <option value="de">เยอรมัน (German)</option>
+              <option value="ru">รัสเซีย (Russian)</option>
+              <option value="vi">เวียดนาม (Vietnamese)</option>
+              <option value="id">อินโดนีเซีย (Indonesian)</option>
+            </select>
+          </div>
+
         </div>
 
         <!-- Tone Selector -->
-        <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto">
-          <i class="fa-solid fa-sliders text-slate-400 hidden sm:inline-block"></i>
-          <div class="flex bg-slate-100 p-1 rounded-xl w-full md:w-auto">
-            <button data-tone="standard" class="tone-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition-all whitespace-nowrap">ทั่วไป</button>
-            <button data-tone="formal" class="tone-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap">ทางการ</button>
-            <button data-tone="casual" class="tone-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap">เป็นกันเอง</button>
-            <button data-tone="slang" class="tone-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap">สแลง/วัยรุ่น</button>
+        <div class="flex items-center gap-2 w-full lg:w-auto min-w-0">
+          <i class="fa-solid fa-sliders text-slate-400 hidden sm:inline-block shrink-0"></i>
+          <div class="flex bg-slate-100 p-1 rounded-xl w-full lg:w-auto overflow-x-auto no-scrollbar min-w-0">
+            <button data-tone="standard" class="tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition-all whitespace-nowrap text-center">ทั่วไป</button>
+            <button data-tone="formal" class="tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap text-center">ทางการ</button>
+            <button data-tone="casual" class="tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap text-center">เป็นกันเอง</button>
+            <button data-tone="slang" class="tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap text-center">สแลง/วัยรุ่น</button>
           </div>
         </div>
 
@@ -101,21 +118,21 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       
       <!-- Input Panel -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col min-h-[280px] focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col min-h-[260px] sm:min-h-[280px] focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
         <div class="p-3 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-          <span id="detectedLangLabel">ข้อความต้นฉบับ</span>
-          <span id="charCount">0 ตัวอักษร</span>
+          <span id="detectedLangLabel" class="truncate max-w-[200px]">ข้อความต้นฉบับ</span>
+          <span id="charCount" class="shrink-0">0 ตัวอักษร</span>
         </div>
 
-        <textarea id="inputText" placeholder="พิมพ์หรือวางข้อความที่ต้องการแปลที่นี่..." class="w-full flex-1 p-4 bg-transparent border-0 focus:outline-none resize-none text-slate-800 placeholder-slate-400 text-base md:text-lg leading-relaxed"></textarea>
+        <textarea id="inputText" placeholder="พิมพ์หรือวางข้อความที่ต้องการแปลที่นี่..." class="w-full flex-1 p-3.5 sm:p-4 bg-transparent border-0 focus:outline-none resize-none text-slate-800 placeholder-slate-400 text-base leading-relaxed"></textarea>
 
-        <div class="p-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50 rounded-b-2xl">
+        <div class="p-2.5 sm:p-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50 rounded-b-2xl">
           <button id="speakSourceBtn" title="ฟังเสียง Google Translate" class="p-2 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors flex items-center gap-1.5 text-xs font-medium">
-            <i class="fa-solid fa-volume-high text-base"></i>
-            <span id="speakSourceStatus"></span>
+            <i class="fa-solid fa-volume-high text-sm sm:text-base"></i>
+            <span id="speakSourceStatus" class="text-[11px]"></span>
           </button>
 
-          <button id="translateBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-xl shadow-md shadow-indigo-100 transition-all flex items-center gap-2">
+          <button id="translateBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-md shadow-indigo-100 transition-all flex items-center gap-2 text-xs sm:text-sm">
             <i class="fa-solid fa-bolt"></i>
             <span>แปลภาษา</span>
           </button>
@@ -123,20 +140,20 @@
       </div>
 
       <!-- Output Panel -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col min-h-[280px]">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col min-h-[260px] sm:min-h-[280px]">
         <div class="p-3 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
           <span>ผลลัพธ์การแปล</span>
-          <span id="activeToneLabel" class="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-medium">โทน: ทั่วไป</span>
+          <span id="activeToneLabel" class="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-medium shrink-0">โทน: ทั่วไป</span>
         </div>
 
-        <div id="outputText" class="flex-1 p-4 text-slate-800 text-base md:text-lg leading-relaxed overflow-y-auto whitespace-pre-wrap">
+        <div id="outputText" class="flex-1 p-3.5 sm:p-4 text-slate-800 text-base leading-relaxed overflow-y-auto whitespace-pre-wrap">
           <span class="text-slate-300">ผลการแปลจะปรากฏที่นี่...</span>
         </div>
 
-        <div class="p-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50 rounded-b-2xl">
+        <div class="p-2.5 sm:p-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50 rounded-b-2xl">
           <button id="speakTargetBtn" title="ฟังเสียง Google Translate" class="p-2 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors flex items-center gap-1.5 text-xs font-medium">
-            <i class="fa-solid fa-volume-high text-base"></i>
-            <span id="speakTargetStatus"></span>
+            <i class="fa-solid fa-volume-high text-sm sm:text-base"></i>
+            <span id="speakTargetStatus" class="text-[11px]"></span>
           </button>
 
           <button id="copyBtn" class="p-2 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors flex items-center gap-1.5 text-xs font-medium">
@@ -150,48 +167,48 @@
 
     <!-- AI Insights Section -->
     <div id="insightsBox" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
-      <div class="border-b border-slate-200 bg-slate-50/50 px-4 flex space-x-4 overflow-x-auto">
-        <button data-tab="grammar" class="tab-btn py-3 px-2 text-sm font-semibold border-b-2 border-indigo-600 text-indigo-600 transition-all flex items-center gap-2 whitespace-nowrap">
+      <div class="border-b border-slate-200 bg-slate-50/50 px-3 sm:px-4 flex space-x-2 sm:space-x-4 overflow-x-auto no-scrollbar">
+        <button data-tab="grammar" class="tab-btn py-3 px-2 text-xs sm:text-sm font-semibold border-b-2 border-indigo-600 text-indigo-600 transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
           <i class="fa-solid fa-circle-check"></i>
           <span>การตรวจไวยากรณ์</span>
         </button>
-        <button data-tab="culture" class="tab-btn py-3 px-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-2 whitespace-nowrap">
+        <button data-tab="culture" class="tab-btn py-3 px-2 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
           <i class="fa-solid fa-globe"></i>
           <span>บริบท & สแลง</span>
         </button>
-        <button data-tab="vocab" class="tab-btn py-3 px-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-2 whitespace-nowrap">
+        <button data-tab="vocab" class="tab-btn py-3 px-2 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
           <i class="fa-solid fa-book-open"></i>
           <span>คลังคำศัพท์</span>
         </button>
       </div>
 
-      <div class="p-5">
+      <div class="p-4 sm:p-5">
         <div id="tabGrammar" class="tab-content space-y-2">
-          <h3 class="text-sm font-semibold text-slate-900 flex items-center gap-2">
+          <h3 class="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-2">
             <i class="fa-solid fa-sparkles text-indigo-500"></i> วิเคราะห์ไวยากรณ์ต้นฉบับ
           </h3>
-          <p id="grammarText" class="text-sm text-slate-600 leading-relaxed bg-indigo-50/50 p-3 rounded-xl border border-indigo-100">-</p>
+          <p id="grammarText" class="text-xs sm:text-sm text-slate-600 leading-relaxed bg-indigo-50/50 p-3 rounded-xl border border-indigo-100">-</p>
         </div>
 
         <div id="tabCulture" class="tab-content hidden space-y-2">
-          <h3 class="text-sm font-semibold text-slate-900 flex items-center gap-2">
+          <h3 class="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-2">
             <i class="fa-solid fa-earth-americas text-indigo-500"></i> อธิบายบริบททางวัฒนธรรมและความหมายแฝง
           </h3>
-          <p id="cultureText" class="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200">-</p>
+          <p id="cultureText" class="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200">-</p>
         </div>
 
         <div id="tabVocab" class="tab-content hidden space-y-3">
-          <h3 class="text-sm font-semibold text-slate-900 flex items-center gap-2">
+          <h3 class="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-2">
             <i class="fa-solid fa-book text-indigo-500"></i> คำศัพท์สำคัญจากข้อความนี้
           </h3>
-          <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+          <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3"></div>
         </div>
       </div>
     </div>
 
   </main>
 
-  <footer class="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-400">
+  <footer class="border-t border-slate-200 bg-white py-3 sm:py-4 text-center text-[11px] sm:text-xs text-slate-400">
     <p>Gemini Translator Studio Pro • Powered by Google Gemini 2.5 Flash & Google Translate Voice</p>
   </footer>
 
@@ -199,7 +216,6 @@
   <script>
     const apiKey = ""; // API Key เติมให้อัตโนมัติในสภาพแวดล้อมระบบ
 
-    // แมปโค้ดภาษาสำหรับการอ่านออกเสียง TTS
     const TTS_LANG_MAP = {
       auto: 'th',
       th: 'th',
@@ -225,7 +241,7 @@
     let selectedTone = 'standard';
     let currentAudio = null;
 
-    // Elements DOM
+    // DOM Elements
     const inputText = document.getElementById('inputText');
     const outputText = document.getElementById('outputText');
     const sourceLang = document.getElementById('sourceLang');
@@ -267,9 +283,9 @@
     document.querySelectorAll('.tone-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.tone-btn').forEach(b => {
-          b.className = 'tone-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap';
+          b.className = 'tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap text-center';
         });
-        e.target.className = 'tone-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition-all whitespace-nowrap';
+        e.target.className = 'tone-btn flex-1 lg:flex-none px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition-all whitespace-nowrap text-center';
         selectedTone = e.target.dataset.tone;
         document.getElementById('activeToneLabel').textContent = `โทน: ${e.target.innerText}`;
       });
@@ -280,9 +296,9 @@
       btn.addEventListener('click', (e) => {
         const targetTab = e.currentTarget.dataset.tab;
         document.querySelectorAll('.tab-btn').forEach(b => {
-          b.className = 'tab-btn py-3 px-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-2 whitespace-nowrap';
+          b.className = 'tab-btn py-3 px-2 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap';
         });
-        e.currentTarget.className = 'tab-btn py-3 px-2 text-sm font-semibold border-b-2 border-indigo-600 text-indigo-600 transition-all flex items-center gap-2 whitespace-nowrap';
+        e.currentTarget.className = 'tab-btn py-3 px-2 text-xs sm:text-sm font-semibold border-b-2 border-indigo-600 text-indigo-600 transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap';
 
         document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
         if (targetTab === 'grammar') document.getElementById('tabGrammar').classList.remove('hidden');
@@ -311,7 +327,7 @@
       }, 2000);
     });
 
-    // ฟังเสียงอ่านด้วย Google Translate TTS Voice Direct
+    // ฟังเสียง Google Translate Voice
     function playGoogleTranslateAudio(text, langCode, statusElem) {
       if (!text || text === 'ผลการแปลจะปรากฏที่นี่...') return;
 
@@ -322,7 +338,7 @@
         speakTargetStatus.textContent = '';
       }
 
-      statusElem.textContent = 'กำลังโหลดเสียง...';
+      statusElem.textContent = 'กำลังโหลด...';
       const ttsLang = TTS_LANG_MAP[langCode] || 'en';
       const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=${ttsLang}&client=tw-ob`;
 
@@ -346,7 +362,6 @@
       };
     }
 
-    // สำรองด้วย Web Speech API หาก Google TTS โดนบล็อก
     function fallbackWebSpeech(text, lang, statusElem) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -368,14 +383,14 @@
       playGoogleTranslateAudio(outputText.innerText, targetLang.value, speakTargetStatus);
     });
 
-    // ส่งคำขอแปลด้วย Gemini API (มี Exponential Backoff)
+    // แปลภาษาด้วย Gemini API
     async function translateText() {
       const text = inputText.value.trim();
       if (!text) return;
 
       translateBtn.disabled = true;
       translateBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>กำลังแปล...</span>`;
-      outputText.innerHTML = `<div class="flex items-center gap-2 text-indigo-600 font-medium"><i class="fa-solid fa-circle-notch animate-spin"></i> Gemini กำลังประมวลผลคำแปล...</div>`;
+      outputText.innerHTML = `<div class="flex items-center gap-2 text-indigo-600 font-medium text-sm"><i class="fa-solid fa-circle-notch animate-spin"></i> Gemini กำลังประมวลผลคำแปล...</div>`;
 
       const sourceLangName = sourceLang.options[sourceLang.selectedIndex].text;
       const targetLangName = targetLang.options[targetLang.selectedIndex].text;
@@ -430,7 +445,6 @@
               ? `ตรวจพบ: ${result.detectedLanguage}` 
               : 'ข้อความต้นฉบับ';
 
-            // แสดง AI Insights
             grammarText.textContent = result.grammarCorrection || 'ข้อความต้นฉบับสมบูรณ์ถูกต้องดีแล้ว';
             cultureText.textContent = result.culturalNotes || 'ไม่มีเกร็ดความรู้บริบทพิเศษเพิ่มเติม';
 
@@ -438,8 +452,8 @@
             if (result.vocabulary && result.vocabulary.length > 0) {
               result.vocabulary.forEach(v => {
                 const card = document.createElement('div');
-                card.className = 'p-3 bg-slate-50 rounded-xl border border-slate-200';
-                card.innerHTML = `<span class="font-bold text-indigo-600 text-sm block">${v.word}</span><span class="text-xs text-slate-500 mt-1 block">${v.meaning}</span>`;
+                card.className = 'p-2.5 sm:p-3 bg-slate-50 rounded-xl border border-slate-200';
+                card.innerHTML = `<span class="font-bold text-indigo-600 text-xs sm:text-sm block">${v.word}</span><span class="text-[11px] sm:text-xs text-slate-500 mt-0.5 block">${v.meaning}</span>`;
                 vocabGrid.appendChild(card);
               });
             } else {
